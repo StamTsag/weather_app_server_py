@@ -21,6 +21,10 @@ class Db:
             search.append(temp)
         return search
 
+    def last_temp(self) -> Temp:
+        t = self.last_temp_coll.find_one()
+        return Temp(t["y"], t["m"], t["d"], t["h"], t["averageTemp"])
+
     def last_days(self, days: int) -> List[Temp]:
         now = datetime.datetime.now()
         before = now - datetime.timedelta(days)
