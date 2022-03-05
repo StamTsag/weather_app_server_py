@@ -3,7 +3,7 @@ from typing import List
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from temp import Temp
+from temp import TempReq
 from db import Db
 
 app = FastAPI()
@@ -22,12 +22,14 @@ app.add_middleware(
 
 db = Db()
 
-temps: List[Temp] = []
+@app.post("/add_temp")
+async def add_temp(temp: TempReq):
+    db.add_temp(temp)
+    return {"msg": "ok"}
 
-@app.get("/add/{temp}")
-async def add_temp(temp: str):
-    temp = Temp(temp)
-    temps.append(temp)
+@app.post("/add_last_temp")
+async def add_last_temp(temp: TempReq):
+    db.add_last_temp(temp)
     return {"msg": "ok"}
 
 @app.get("/temps/{m}/{d}")

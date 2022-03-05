@@ -1,10 +1,11 @@
+from fastapi.encoders import jsonable_encoder
 from pymongo import MongoClient
 from dotenv import load_dotenv
 from typing import List
 import os
 import datetime
 
-from temp import Temp
+from temp import Temp, TempReq
 
 class Db:
     def __init__(self):
@@ -13,6 +14,12 @@ class Db:
         self.db = client["weather-app"]
         self.temps_coll = self.db[os.environ.get("MONGODB_NAME")]
         self.last_temp_coll = self.db["last_temp"]
+
+    def add_temp(self, temp: TempReq):
+        self.temps_coll.insert_one(jsonable_encoder(temp))
+
+    def add_last_temp(self, temp: TempReq):
+        self.last_temp_coll.replace_one({}, jsonable_encoder(temp))
 
     def get_temps(self, m: int, d: int) -> List[Temp]:
         search: List[Temp] = []
