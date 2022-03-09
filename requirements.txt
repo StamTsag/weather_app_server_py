@@ -1,2 +1,4 @@
 fastapi==0.75.0
 pymongo==4.0.2
+uvicorn[standard]==0.17.5
+python-dotenv==0.19.2
