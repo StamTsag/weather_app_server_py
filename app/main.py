@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from temp import TempReq
+from temp import Temp
 from db import Db
 
 app = FastAPI()
@@ -17,12 +17,12 @@ app.add_middleware(
 db = Db()
 
 @app.post("/add_temp")
-async def add_temp(temp: TempReq):
+async def add_temp(temp: Temp):
     db.add_temp(temp)
     return {"msg": "ok"}
 
 @app.post("/add_last_temp")
-async def add_last_temp(temp: TempReq):
+async def add_last_temp(temp: Temp):
     db.add_last_temp(temp)
     return {"msg": "ok"}
 
