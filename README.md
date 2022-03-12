@@ -7,8 +7,8 @@ using python, fastapi and mongodb
 
 1. run `pip install -r requirements.txt`
 2. mongodb database named weather-app with following collections:
-  - `temps` for storing the temperatures
-  - `last_temp` for storing the last measured temperature
+    - `temps` for storing the temperatures
+    - `last_temp` for storing the last measured temperature
 3. `.env` file, use `.env.example` as an example
 4. run it inside `app` directory with `uvicorn main:app --reload`, omit `--reload` if it's in production
 
