@@ -19,6 +19,7 @@ db = Db()
 @app.post("/add_temp")
 async def add_temp(temp: Temp):
     db.add_temp(temp)
+    db.add_last_temp(temp)
     return {"msg": "ok"}
 
 @app.post("/add_last_temp")
