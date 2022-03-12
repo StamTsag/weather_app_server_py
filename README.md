@@ -6,7 +6,7 @@ using python, fastapi and mongodb
 ## get it working
 
 1. run `pip install -r requirements.txt`
-2. mongodb database named weather-app with following collections:
+2. mongodb database named `weather-app` with following collections:
     - `temps` for storing the temperatures
     - `last_temp` for storing the last measured temperature
 3. `.env` file, use `.env.example` as an example
